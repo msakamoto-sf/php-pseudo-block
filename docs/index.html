@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title>Pseudo_Block - Pseudo block coding support package for PHP</title>
+<link rel="stylesheet" type="text/css" media="screen,print" href="css/filter_ie4.css">
+</head>
+<body>
+<div id="wrapper">
+
+<div id="header">
+<div id="xhwlay-headernote">
+<span style="font-style: italic;">Pseudo_Block</span><br>
+- Pseudo block coding support package for PHP -
+<ul>
+<li><a href="../" title="Back to Top Page">Top</a></li>
+<li><a href="#INTRO" title="Intro">Intro</a></li>
+<li><a href="#ABOUT" title="About">About</a></li>
+<li><a href="#INSTALL" title="Install and Usage">Install/Usage</a></li>
+</ul>
+</div>
+</div><!-- #header -->
+
+<div id="content-wrapper">
+
+<div id="main">
+
+<div class="text-wrapper">
+<h1><a name="INTRO">Intro: What Pseudo_Block package is ?</a></h1>
+<div class="text">
+<p>
+Pseudo_Block improves usability of eval(), create_function().
+You do not have to escape double/single quotations, back slashes in your eval(), create_function().
+</p>
+<p>
+Pseudo_Block provides 'pseudo code block' way which not supported in PHP syntax natularry.
+</p>
+</div>
+</div><!-- .text-wrapper -->
+
+<div class="text-wrapper">
+<h1><a name="ABOUT">About</a></h1>
+<h2>License</h2>
+<div class="text">
+Apache Software License 2
+</div>
+<h2>Requirements</h2>
+<div class="text">
+<p>PHP(Unit Tested) : PHP 4.4.7 and 5.2.4</p>
+</div>
+<h2>Maintainer</h2>
+<div class="text">
+sakamoto.gsyc.3s@gmail.com
+</div>
+</div><!-- .text-wrapper -->
+
+<div class="text-wrapper">
+<h1><a name="INSTALL">Installation and Usage</a></h1>
+<h2>Latest <!-- Stable --> Beta Release</h2>
+<div class="text">
+<a href="https://github.com/msakamoto-sf/php-pseudo-block/releases/tag/v0.1.1-beta" target="download">v0.1.1-beta</a>
+</div>
+<h2>Installation</h2>
+<div class="text">
+<p>
+Pseudo_Block is provieded as PEAR package. 
+You can install it into your PEAR environment like below:
+<pre>
+$ su (if you needed)
+# pear install \
+https://github.com/msakamoto-sf/php-pseudo-block/archive/v0.1.1-beta.tar.gz
+</pre>
+</p>
+<p>
+Are you a normal user, not administrator of your sever ? 
+Don't worry. PEAR provides some means for normal users to setup PEAR environment in user's local/home environment.<br>
+Please refer PEAR Manual : <br>
+&gt;&gt;<a href="http://pear.php.net/manual/en/installation.getting.php" target="manual">"Installation -&gt; Getting Manager" (In English)</a><br>
+In Japanese, you can refer same manual here : <br>
+<a href="http://www.phppro.jp/phpmanual/pear/installation.getting.html" target="manual">http://www.phppro.jp/phpmanual/pear/installation.getting.html</a>
+</p>
+</div>
+<h2>Follwing GitHub repositry</h2>
+<div class="text">
+see : <a href="https://github.com/msakamoto-sf/php-pseudo-block">https://github.com/msakamoto-sf/php-pseudo-block</a>
+</div>
+<h2>Usage 1 : Pseudo_Eval</h2>
+<div class="text">
+<p class="src">
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">require_once(</font><font color="#DD0000">'Pseudo/Eval.php'</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$pe&nbsp;</font><font color="#007700">=&amp;&nbsp;new&nbsp;</font><font color="#0000BB">Pseudo_Eval</font><font color="#007700">();
+<br />
+<br /></font><font color="#FF8000">//&nbsp;start&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pe</font><font color="#007700">-&gt;</font><font color="#0000BB">start</font><font color="#007700">();
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>//&nbsp;Here&nbsp;is&nbsp;pseudo&nbsp;block&nbsp;code.
+<br />
+<br />$a&nbsp;=&nbsp;"ABC.";
+<br />$b&nbsp;=&nbsp;'xyz.';
+<br />return&nbsp;$a&nbsp;.&nbsp;$b&nbsp;.&nbsp;$c;
+<br />//&nbsp;$c&nbsp;is&nbsp;binded&nbsp;value&nbsp;from&nbsp;outside&nbsp;of&nbsp;this&nbsp;block.
+<br />
+<br /><font color="#0000BB">&lt;?php
+<br /></font><font color="#FF8000">//&nbsp;end&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pe</font><font color="#007700">-&gt;</font><font color="#0000BB">end</font><font color="#007700">();
+<br />
+<br /></font><font color="#0000BB">$val&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">30</font><font color="#007700">;
+<br /></font><font color="#FF8000">//&nbsp;bind&nbsp;$val&nbsp;to&nbsp;'$c'&nbsp;to&nbsp;pseudo&nbsp;code&nbsp;block
+<br />//&nbsp;NOTE:&nbsp;you&nbsp;can't&nbsp;bind&nbsp;values&nbsp;by&nbsp;reference.&nbsp;(all&nbsp;value&nbsp;is&nbsp;passed&nbsp;by&nbsp;copy)
+<br /></font><font color="#0000BB">$pe</font><font color="#007700">-&gt;</font><font color="#0000BB">bind</font><font color="#007700">(</font><font color="#DD0000">'c'</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$val</font><font color="#007700">);
+<br />
+<br /></font><font color="#FF8000">//&nbsp;evaluate&nbsp;pseudo&nbsp;code&nbsp;block
+<br /></font><font color="#0000BB">$result&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$pe</font><font color="#007700">-&gt;</font><font color="#0000BB">act</font><font color="#007700">();
+<br />
+<br />echo&nbsp;</font><font color="#0000BB">$result&nbsp;</font><font color="#007700">.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;
+<br /></font><font color="#FF8000">//&nbsp;out&nbsp;:&nbsp;"ABC.xyz.30"
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>
+</font>
+</code>
+</p>
+</div>
+<h2>Usage 2 : Pseudo_Lambda</h2>
+<div class="text">
+<p class="src">
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">require_once(</font><font color="#DD0000">'Pseudo/Lambda.php'</font><font color="#007700">);
+<br />
+<br /></font><font color="#FF8000">//&nbsp;args&nbsp;is&nbsp;create_function()'s&nbsp;1st&nbsp;args(function&nbsp;arguments)
+<br /></font><font color="#0000BB">$pl&nbsp;</font><font color="#007700">=&amp;&nbsp;new&nbsp;</font><font color="#0000BB">Pseudo_Lambda</font><font color="#007700">(</font><font color="#DD0000">'$a,&nbsp;$b'</font><font color="#007700">);
+<br />
+<br /></font><font color="#FF8000">//&nbsp;start&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pl</font><font color="#007700">-&gt;</font><font color="#0000BB">start</font><font color="#007700">();
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>//&nbsp;Here&nbsp;is&nbsp;pseudo&nbsp;block&nbsp;code.
+<br />
+<br />static&nbsp;$c&nbsp;=&nbsp;0;
+<br />$c++;
+<br />
+<br />return&nbsp;$a&nbsp;+&nbsp;$b&nbsp;+&nbsp;$c&nbsp;+&nbsp;$d;
+<br />//&nbsp;$d&nbsp;is&nbsp;binded&nbsp;value&nbsp;from&nbsp;outside&nbsp;of&nbsp;this&nbsp;block.
+<br />
+<br /><font color="#0000BB">&lt;?php
+<br /></font><font color="#FF8000">//&nbsp;end&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pl</font><font color="#007700">-&gt;</font><font color="#0000BB">end</font><font color="#007700">();
+<br />
+<br /></font><font color="#0000BB">$val&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">30</font><font color="#007700">;
+<br /></font><font color="#FF8000">//&nbsp;bind&nbsp;$val&nbsp;to&nbsp;'$d'&nbsp;to&nbsp;pseudo&nbsp;code&nbsp;block
+<br />//&nbsp;NOTE:&nbsp;you&nbsp;can't&nbsp;bind&nbsp;values&nbsp;by&nbsp;reference.&nbsp;(all&nbsp;value&nbsp;is&nbsp;passed&nbsp;by&nbsp;copy)
+<br /></font><font color="#0000BB">$pl</font><font color="#007700">-&gt;</font><font color="#0000BB">bind</font><font color="#007700">(</font><font color="#DD0000">'d'</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$val</font><font color="#007700">);
+<br />
+<br /></font><font color="#FF8000">//&nbsp;create&nbsp;anonymous&nbsp;function&nbsp;(lambda)&nbsp;from&nbsp;pseudo&nbsp;code&nbsp;block
+<br /></font><font color="#0000BB">$func&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$pl</font><font color="#007700">-&gt;</font><font color="#0000BB">create</font><font color="#007700">();
+<br />
+<br />echo&nbsp;</font><font color="#0000BB">$func</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">,&nbsp;</font><font color="#0000BB">2</font><font color="#007700">)&nbsp;.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;&nbsp;</font><font color="#FF8000">//&nbsp;out&nbsp;:&nbsp;34&nbsp;(1&nbsp;+&nbsp;2&nbsp;+&nbsp;1($c)&nbsp;+&nbsp;30($d))
+<br /></font><font color="#007700">echo&nbsp;</font><font color="#0000BB">$func</font><font color="#007700">(</font><font color="#0000BB">3</font><font color="#007700">,&nbsp;</font><font color="#0000BB">4</font><font color="#007700">)&nbsp;.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;&nbsp;</font><font color="#FF8000">//&nbsp;out&nbsp;:&nbsp;39&nbsp;(3&nbsp;+&nbsp;4&nbsp;+&nbsp;2($c)&nbsp;+&nbsp;30($d))
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>
+</font>
+</code>
+</p>
+</div>
+<h2>Usage 3 : Pseudo_Block</h2>
+<div class="text">
+<p><code>Pseudo_Block</code> is super class of <code>Pseudo_Eval</code> and <code>Psuedo_Lambda</code>. 
+It provides pseudo block text handling method. You can use pseudo block as raw data section like perl and ruby.
+</p>
+<p class="src">
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">require_once(</font><font color="#DD0000">'Pseudo/Block.php'</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$pb&nbsp;</font><font color="#007700">=&amp;&nbsp;new&nbsp;</font><font color="#0000BB">Pseudo_Block</font><font color="#007700">();
+<br />
+<br /></font><font color="#FF8000">//&nbsp;start&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pb</font><font color="#007700">-&gt;</font><font color="#0000BB">start</font><font color="#007700">();
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>Name|Age|Hobbies
+<br />Masahiko|26|Programming
+<br />Sakamoto|62|Cooking
+<br />FengJing|-|Walking
+<br /><font color="#0000BB">&lt;?php
+<br /></font><font color="#FF8000">//&nbsp;end&nbsp;pseudo&nbsp;block
+<br /></font><font color="#0000BB">$pb</font><font color="#007700">-&gt;</font><font color="#0000BB">end</font><font color="#007700">();
+<br />
+<br /></font><font color="#FF8000">//&nbsp;get&nbsp;pseudo&nbsp;block&nbsp;text
+<br /></font><font color="#0000BB">$text&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">$pb</font><font color="#007700">-&gt;</font><font color="#0000BB">getText</font><font color="#007700">();
+<br />
+<br /></font><font color="#0000BB">$rows&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">array_map</font><font color="#007700">(</font><font color="#DD0000">'trim'</font><font color="#007700">,&nbsp;</font><font color="#0000BB">explode</font><font color="#007700">(</font><font color="#DD0000">"\n"</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$text</font><font color="#007700">));
+<br />foreach(</font><font color="#0000BB">$rows&nbsp;</font><font color="#007700">as&nbsp;</font><font color="#0000BB">$row</font><font color="#007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</font><font color="#0000BB">strtr</font><font color="#007700">(</font><font color="#0000BB">$row</font><font color="#007700">,&nbsp;</font><font color="#DD0000">"|"</font><font color="#007700">,&nbsp;</font><font color="#DD0000">","</font><font color="#007700">)&nbsp;.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;
+<br />}
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>
+</font>
+</code>
+</p>
+</div>
+<h2>Usage 4 : Pseudo_Perl (1)</h2>
+<div class="text">
+<p class="src">
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />
+</font><font color="#007700">require_once(</font><font color="#DD0000">'Pseudo/Perl.php'</font><font color="#007700">);<br />
+<br />
+</font><font color="#0000BB">$pp&nbsp;</font><font color="#007700">=&amp;&nbsp;new&nbsp;</font><font color="#0000BB">Pseudo_Perl</font><font color="#007700">();<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">setPerlBin</font><font color="#007700">(</font><font color="#DD0000">'C:/Perl/bin/perl.exe&nbsp;-w'</font><font color="#007700">);<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">start</font><font color="#007700">();<br />
+</font><font color="#0000BB">?&gt;<br />
+</font>while(&lt;STDIN&gt;)&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;STDOUT&nbsp;$_;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;STDERR&nbsp;"--",&nbsp;$_;<br />
+}<br />
+<font color="#0000BB">&lt;?php<br />
+$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">end</font><font color="#007700">();<br />
+<br />
+</font><font color="#FF8000">//&nbsp;we&nbsp;can&nbsp;communicate&nbsp;with&nbsp;invoked&nbsp;process&nbsp;<br />
+//&nbsp;through&nbsp;stdin/out/err&nbsp;descriptor.<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">descriptors&nbsp;</font><font color="#007700">=&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">0&nbsp;</font><font color="#007700">=&gt;&nbsp;array(</font><font color="#DD0000">'pipe'</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'r'</font><font color="#007700">),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">1&nbsp;</font><font color="#007700">=&gt;&nbsp;array(</font><font color="#DD0000">'pipe'</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'w'</font><font color="#007700">),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">2&nbsp;</font><font color="#007700">=&gt;&nbsp;array(</font><font color="#DD0000">'pipe'</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'w'</font><font color="#007700">),<br />
+);<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">popen</font><font color="#007700">();<br />
+<br />
+</font><font color="#FF8000">//&nbsp;now&nbsp;we&nbsp;pass&nbsp;some&nbsp;string&nbsp;datas&nbsp;to&nbsp;perl.<br />
+</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">],&nbsp;</font><font color="#DD0000">"ABC"</font><font color="#007700">);<br />
+</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">],&nbsp;</font><font color="#DD0000">"DEF"</font><font color="#007700">);<br />
+</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]);<br />
+<br />
+</font><font color="#FF8000">//&nbsp;now&nbsp;we&nbsp;retrieve&nbsp;some&nbsp;string&nbsp;datas&nbsp;from&nbsp;perl.<br />
+<br />
+</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">fread</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">],&nbsp;</font><font color="#0000BB">8192</font><font color="#007700">);&nbsp;</font><font color="#FF8000">//&nbsp;STDOUT<br />
+</font><font color="#007700">echo&nbsp;</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;<br />
+</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">]);<br />
+<br />
+</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">fread</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">],&nbsp;</font><font color="#0000BB">8192</font><font color="#007700">);&nbsp;</font><font color="#FF8000">//&nbsp;STDERR<br />
+</font><font color="#007700">echo&nbsp;</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;<br />
+</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]);<br />
+<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pclose</font><font color="#007700">();<br />
+</font>
+</font>
+</code>
+</p>
+</div>
+<h2>Usage 5 : Pseudo_Perl (2)</h2>
+<div class="text">
+<p class="src">
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />
+</font><font color="#007700">require_once(</font><font color="#DD0000">'Pseudo/Perl.php'</font><font color="#007700">);<br />
+<br />
+</font><font color="#0000BB">$pp&nbsp;</font><font color="#007700">=&amp;&nbsp;new&nbsp;</font><font color="#0000BB">Pseudo_Perl</font><font color="#007700">();<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">setPerlBin</font><font color="#007700">(</font><font color="#DD0000">'C:/Perl/bin/perl.exe&nbsp;-w'</font><font color="#007700">);<br />
+</font><font color="#FF8000">//&nbsp;bind&nbsp;value&nbsp;(a)<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">bind</font><font color="#007700">(</font><font color="#DD0000">'foo'</font><font color="#007700">,&nbsp;</font><font color="#0000BB">123</font><font color="#007700">);<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">start</font><font color="#007700">();<br />
+</font><font color="#0000BB">?&gt;<br />
+</font><br />
+#&nbsp;We&nbsp;can&nbsp;retrieve&nbsp;bound&nbsp;values&nbsp;through&nbsp;CGI&nbsp;interface.<br />
+use&nbsp;strict;<br />
+use&nbsp;warnings;<br />
+use&nbsp;CGI;<br />
+our&nbsp;$q&nbsp;=&nbsp;new&nbsp;CGI();<br />
+print&nbsp;$q-&gt;param('foo'),&nbsp;"\n";<br />
+print&nbsp;$q-&gt;param('bar'),&nbsp;"\n";<br />
+<br />
+<font color="#0000BB">&lt;?php<br />
+$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">end</font><font color="#007700">();<br />
+</font><font color="#FF8000">//&nbsp;bind&nbsp;value(b)<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">bind</font><font color="#007700">(</font><font color="#DD0000">'bar'</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'ABC&nbsp;DEF&nbsp;GHI'</font><font color="#007700">);<br />
+<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">descriptors&nbsp;</font><font color="#007700">=&nbsp;array(<br />
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">1&nbsp;</font><font color="#007700">=&gt;&nbsp;array(</font><font color="#DD0000">'pipe'</font><font color="#007700">,&nbsp;</font><font color="#DD0000">'w'</font><font color="#007700">),<br />
+);<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">popen</font><font color="#007700">();<br />
+<br />
+</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">=&nbsp;</font><font color="#0000BB">fread</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">],&nbsp;</font><font color="#0000BB">8192</font><font color="#007700">);<br />
+echo&nbsp;</font><font color="#0000BB">$output&nbsp;</font><font color="#007700">.&nbsp;</font><font color="#0000BB">PHP_EOL</font><font color="#007700">;<br />
+</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">]);<br />
+<br />
+</font><font color="#0000BB">$pp</font><font color="#007700">-&gt;</font><font color="#0000BB">pclose</font><font color="#007700">();<br />
+</font>
+</font>
+</code>
+</p>
+</div>
+<h2>Reporting Bugs, Requests, Patches</h2>
+<div class="text">
+use GitHub Issues and Pull requests.
+</div>
+<div class="text">
+<p style="font-style: italic;">
+Hava a funny PHP programming !!
+</p>
+</div>
+</div><!-- .text-wrapper -->
+
+</div><!-- #main -->
+
+</div><!-- #content-wrapper -->
+
+<div id="footer">
+Copyright &copy; 2016 sakamoto.gsyc.3s@gmail.com
+</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+</body>
+</html>
